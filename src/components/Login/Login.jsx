@@ -171,9 +171,19 @@ function Login() {
           const redirect_uri = queryParameters.get("redirect_uri");
           const access = response.data.access;
           console.log(redirect_uri);
-          Cookies.set("jwtToken", jwtToken, { expires: 1 / 12 });
-          Cookies.set("userEmail", useremail);
-          Cookies.set("access", JSON.stringify(access));
+          Cookies.set("jwtToken", jwtToken, {
+            expires: 1 / 12,
+            domain: "localhost",
+            path: "/",
+          });
+          Cookies.set("userEmail", useremail, {
+            domain: "localhost",
+            path: "/",
+          });
+          Cookies.set("access", JSON.stringify(access), {
+            domain: "localhost",
+            path: "/",
+          });
           if (redirect_uri) {
             window.location.href = decodeURIComponent(redirect_uri);
           } else {
