@@ -161,10 +161,16 @@ function Login() {
 
     if (Object.entries(formErrors).length === 0) {
       try {
-        const response = await axios.post(`${verifyOtp}`, {
-          otp: loginDetails.otp,
-          email: loginDetails.email,
-        });
+        const response = await axios.post(
+          `${verifyOtp}`,
+          {
+            otp: loginDetails.otp,
+            email: loginDetails.email,
+          },
+          {
+            withCredentials: true,
+          }
+        );
         if (response.data.jwt_token) {
           const useremail = response.data.userEmail;
           const jwtToken = response.data.jwt_token;
@@ -173,15 +179,15 @@ function Login() {
           console.log(redirect_uri);
           Cookies.set("jwtToken", jwtToken, {
             expires: 1 / 12,
-            domain: "localhost",
+            domain: "azurestaticapps.net",
             path: "/",
           });
           Cookies.set("userEmail", useremail, {
-            domain: "localhost",
+            domain: "azurestaticapps.net",
             path: "/",
           });
           Cookies.set("access", JSON.stringify(access), {
-            domain: "localhost",
+            domain: "azurestaticapps.net",
             path: "/",
           });
           if (redirect_uri) {
