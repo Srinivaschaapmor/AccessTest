@@ -179,15 +179,15 @@ function Login() {
           console.log(redirect_uri);
           Cookies.set("jwtToken", jwtToken, {
             expires: 1 / 12,
-            domain: "azurestaticapps.net",
+            domain: "localhost, azurestaticapps.net",
             path: "/",
           });
           Cookies.set("userEmail", useremail, {
-            domain: "azurestaticapps.net",
+            domain: "localhost, azurestaticapps.net",
             path: "/",
           });
           Cookies.set("access", JSON.stringify(access), {
-            domain: "azurestaticapps.net",
+            domain: "localhost, azurestaticapps.net",
             path: "/",
           });
           if (redirect_uri) {
